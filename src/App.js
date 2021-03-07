@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import QuoteBox from './QuoteBox';
 
 function App() {
-  const [data, setData] = useState({ hits: [] });
+  const [quotes, setQuotes] = useState({});
+  const [loadQuotes, setLoadQuotes] = useState(false);
+  const [titles, setTitles] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAllQuotes = async () => {
       const result = await axios(
-        'https://hn.algolia.com/api/v1/search?query=redux',
+        'http://localhost:8000/all',
       );
 
-      setData(result.data);
+      // Find book titles
+      for (let i in result.data) {
+        setTitles(oldArray => [...oldArray, i]);
+      }
+
+      // Set quotes json
+      setQuotes(result.data);
+      setLoadQuotes(true);
     }
 
-    fetchData();
+    fetchAllQuotes();
   }, []);
 
   return (
-    <ul>
-      {data.hits.map(item => (
-        <li key={item.objectID}>
-          <a href={item.url}>{item.title}</a>
-        </li>
-      ))}
-    </ul>
+    <div>
+      {loadQuotes && titles.map(t => quotes[t].map(q => <QuoteBox {...{ title: t, date: q.date, quote: q.quote }} />))}
+    </div>
   );
 }
 
