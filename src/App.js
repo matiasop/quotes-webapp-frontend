@@ -1,36 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import QuoteBox from './QuoteBox';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import AllQuotes from './AllQuotes';
 
-function App() {
-  const [quotes, setQuotes] = useState({});
-  const [loadQuotes, setLoadQuotes] = useState(false);
-  const [titles, setTitles] = useState([]);
-
-  useEffect(() => {
-    const fetchAllQuotes = async () => {
-      const result = await axios(
-        'http://localhost:8000/all',
-      );
-
-      // Find book titles
-      for (let i in result.data) {
-        setTitles(oldArray => [...oldArray, i]);
-      }
-
-      // Set quotes json
-      setQuotes(result.data);
-      setLoadQuotes(true);
-    }
-
-    fetchAllQuotes();
-  }, []);
-
+export default function App() {
   return (
-    <div>
-      {loadQuotes && titles.map(t => quotes[t].map(q => <QuoteBox {...{ title: t, date: q.date, quote: q.quote }} />))}
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">All Quotes (Home)</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/items">Items</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/items">
+            <Items />
+          </Route>
+          <Route path="/">
+            <AllQuotes />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+function About() {
+  return <h2>About</h2>
+}
+
+function Items() {
+  return <h2>Items</h2>
+}
