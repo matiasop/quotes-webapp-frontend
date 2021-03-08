@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import QuoteBox from './QuoteBox';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
-function AllQuotes() {
+const Books = () => {
+  // let match = useRouteMatch();
+
   const [quotes, setQuotes] = useState({});
   const [loadQuotes, setLoadQuotes] = useState(false);
   const [titles, setTitles] = useState([]);
@@ -28,9 +37,12 @@ function AllQuotes() {
 
   return (
     <div>
-      {loadQuotes && titles.map((t, index) => quotes[t].map(q => <QuoteBox {...{ title: t, date: q.date, quote: q.quote, displayTitle: true, index: index }} />))}
+      <h2>Book Quotes</h2>
+      <ul>
+        {loadQuotes && titles.map((t, i) => <li><a href={`quotes/${i}`}>{t}</a></li>)}
+      </ul>
     </div>
   );
 }
 
-export default AllQuotes;
+export default Books;

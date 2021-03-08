@@ -6,6 +6,8 @@ import {
   Link
 } from "react-router-dom";
 import AllQuotes from './AllQuotes';
+import Books from './Books';
+import BookQuotes from './BookQuotes';
 
 export default function App() {
   return (
@@ -20,7 +22,7 @@ export default function App() {
               <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to="/items">Items</Link>
+              <Link to="/books">Books</Link>
             </li>
           </ul>
         </nav>
@@ -29,8 +31,10 @@ export default function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/items">
-            <Items />
+          <Route path="/books">
+            <Books />
+          </Route>
+          <Route path="/quotes/:id" children={<BookQuotes />}>
           </Route>
           <Route path="/">
             <AllQuotes />
@@ -43,8 +47,4 @@ export default function App() {
 
 function About() {
   return <h2>About</h2>
-}
-
-function Items() {
-  return <h2>Items</h2>
 }
