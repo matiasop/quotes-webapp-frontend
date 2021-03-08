@@ -16,10 +16,7 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">All Quotes (Home)</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
+              <Link to="/">All Quotes</Link>
             </li>
             <li>
               <Link to="/books">Books</Link>
@@ -28,9 +25,6 @@ export default function App() {
         </nav>
 
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
           <Route path="/books">
             <Books />
           </Route>
@@ -43,8 +37,4 @@ export default function App() {
       </div>
     </Router>
   );
-}
-
-function About() {
-  return <h2>About</h2>
 }

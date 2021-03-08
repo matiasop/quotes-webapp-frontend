@@ -33,7 +33,6 @@ const BookQuotes = () => {
     <div>
       <h2>ID: {id}</h2>
       <h3>Book Title: {loadQuotes && titles[id]}</h3>
-      {/* <p>{loadQuotes && quotes[titles[id]]}</p> */}
       {loadQuotes && quotes[titles[id]].map(q => <QuoteBox {...{ title: titles[id], date: q.date, quote: q.quote, displayTitle: false, index: id }} />)}
     </div>
   );
