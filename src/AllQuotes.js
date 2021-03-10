@@ -27,7 +27,7 @@ function AllQuotes() {
   }, []);
 
   return (
-    <div>
+    <div className="all-quotes">
       {loadQuotes && titles.map((t, index) => quotes[t].map(q => <QuoteBox {...{ title: t, date: q.date, quote: q.quote, displayTitle: true, index: index }} />))}
     </div>
   );

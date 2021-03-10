@@ -31,9 +31,10 @@ const BookQuotes = () => {
 
   return (
     <div>
-      <h2>ID: {id}</h2>
-      <h3>Book Title: {loadQuotes && titles[id]}</h3>
-      {loadQuotes && quotes[titles[id]].map(q => <QuoteBox {...{ title: titles[id], date: q.date, quote: q.quote, displayTitle: false, index: id }} />)}
+      <h3 className={"book-title"}>Book Title: {loadQuotes && titles[id]}</h3>
+      <div className={"book-quotes"}>
+        {loadQuotes && quotes[titles[id]].map(q => <QuoteBox {...{ title: titles[id], date: q.date, quote: q.quote, displayTitle: false, index: id }} />)}
+      </div>
     </div>
   );
 }

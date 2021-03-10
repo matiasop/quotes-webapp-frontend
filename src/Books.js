@@ -27,10 +27,12 @@ const Books = () => {
 
   return (
     <div>
-      <h2>Book Quotes</h2>
-      <ul>
-        {loadQuotes && titles.map((t, i) => <li><a href={`quotes/${i}`}>{t}</a></li>)}
-      </ul>
+      <h2 className={"book-title"}>Book Quotes</h2>
+      <div>
+        <ul className={"book-list"}>
+          {loadQuotes && titles.map((t, i) => <li><a href={`quotes/${i}`}>{t}</a></li>)}
+        </ul>
+      </div>
     </div>
   );
 }

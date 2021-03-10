@@ -12,8 +12,8 @@ import BookQuotes from './BookQuotes';
 export default function App() {
   return (
     <Router>
-      <div>
-        <nav>
+      <div className={"app-container"}>
+        <nav className={"navbar"}>
           <ul>
             <li>
               <Link to="/">All Quotes</Link>
